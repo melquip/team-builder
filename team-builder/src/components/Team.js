@@ -14,7 +14,7 @@ export default function Team({ initialTeam, name }) {
 
 	const [team, setTeam] = useState(initialTeam);
 	const [memberForm, setMemberForm] = useState(initialMemberForm)
-	const [memberToEdit, setMemberToEdit] = useState('');
+	const [memberToEdit, setMemberToEdit] = useState({ id: '', index: 0 });
 
 	const handleInputChange = e => {
 		setMemberForm({
@@ -25,14 +25,16 @@ export default function Team({ initialTeam, name }) {
 
 	const handleMemberFormSubmit = e => {
 		e.preventDefault();
-		if(memberToEdit !== '') {
-			const teamMembers = team.filter(member => member.id !== memberToEdit);
-			setTeam([ ...teamMembers, memberForm ]);
-			
+		if(memberToEdit.id !== '') {
+			const teamMembers = team.concat();
+			const newMember = { ...memberForm, id: memberToEdit.id };
+			teamMembers[memberToEdit.index] = newMember;
+			setTeam(teamMembers);
+
 			document.querySelectorAll('.edit-btn')
 				.forEach(btn => btn.classList.remove('active'));
 
-			setMemberToEdit('');
+			setMemberToEdit({ id: '', index: 0 });
 		} else {
 			setTeam([ ...team, { ...memberForm, id: uuid() } ]);
 		}
@@ -43,8 +45,9 @@ export default function Team({ initialTeam, name }) {
 		document.querySelectorAll('.edit-btn')
 			.forEach(btn => btn.classList.remove('active'));
 		e.target.classList.toggle('active');
-
-		setMemberToEdit(id);
+		
+		const index = Array.from(e.target.parentElement.parentElement.children).indexOf(e.target.parentElement);
+		setMemberToEdit({ id: id, index: index });
 		setMemberForm(
 			team.find(member => member.id === id)
 		);
