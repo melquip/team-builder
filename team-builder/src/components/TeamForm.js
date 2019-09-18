@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Form({ data, handleChange, handleSubmit }) {
+export default function TeamForm({ data, handleChange, handleSubmit }) {
 	const { name, email, role } = data;
 	const isDisabled = () => {
 		const form = document.getElementById('teamMember');
