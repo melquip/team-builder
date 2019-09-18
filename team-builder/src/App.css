@@ -64,4 +64,9 @@ input {
 button {
 	margin-top: 20px;
 	padding: 10px;
+	transition: opacity 0.33s ease-in-out;
+}
+
+button:disabled {
+	opacity: 0.33;
 }

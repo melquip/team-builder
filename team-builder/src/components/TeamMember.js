@@ -7,7 +7,11 @@ export default function TeamMember({ member, handleEdit }) {
 			{name}<br />
 			{email}<br />
 			{role}<br />
-			<div className="edit-btn" onClick={e => handleEdit(e, member.id)}>Edit</div>
+			<div 
+				className="edit-btn" 
+				onClick={e => handleEdit(e, member.id)}>
+				Edit
+			</div>
 		</div>
 	)
 }

@@ -47,24 +47,14 @@ function App() {
 		e.preventDefault();
 		if(memberToEdit !== '') {
 			const teamMembers = team.filter(member => member.id !== memberToEdit);
-			setTeam(
-				[
-					...teamMembers,
-					memberForm
-				]
-			);
+			setTeam([ ...teamMembers, memberForm ]);
 
 			document.querySelectorAll('.edit-btn')
 				.forEach(btn => btn.classList.remove('active'));
 
 			setMemberToEdit('');
 		} else {
-			setTeam(
-				[
-					...team,
-					{ ...memberForm, id: uuid() }
-				]
-			);
+			setTeam([ ...team, { ...memberForm, id: uuid() } ]);
 		}
 		setMemberForm(initialMemberForm);
 	}
