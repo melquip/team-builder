@@ -4,7 +4,7 @@ export default function Form({ data, handleChange, handleSubmit }) {
 	const { name, email, role } = data;
 	return (
 		<>
-			<h1>Add Team Member</h1>
+			<h1>Add / Edit Team Member</h1>
 			<form>
 				<label htmlFor="name">Name:</label>
 				<input value={name} onChange={handleChange} id="name" name="name" type="text" required />
